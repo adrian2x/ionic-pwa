@@ -29,3 +29,64 @@
   More info about color theming using Ionic:
   https://ionicframework.com/docs/theming/color-generator
 */
+
+
+/* ==========================================================================
+   Begin Tailwindscss
+   ========================================================================== */
+
+/* @See https://tailwindcss.com/docs/functions-and-directives
+   ========================================================================== */
+
+@tailwind utilities;
+
+/* Base layer to merge with tailwindcss base */
+@layer base {
+  h1 {
+    /* the apply directive is like extending multiple classes */
+    @apply text-2xl;
+  }
+
+  h2 {
+    @apply text-xl;
+  }
+}
+
+/*  Utilities layer to merge with @tailwind utilities */
+@layer utilities {
+  .scroll-snap-none {
+    scroll-snap-type: none;
+  }
+  .scroll-snap-x {
+    scroll-snap-type: x;
+  }
+  .scroll-snap-y {
+    scroll-snap-type: y;
+  }
+
+  /* Auto-generate responsive prefixes for the classes */
+  @responsive {
+    .scroll-snap-none {
+      scroll-snap-type: none;
+    }
+    .scroll-snap-x {
+      scroll-snap-type: x;
+    }
+    .scroll-snap-y {
+      scroll-snap-type: y;
+    }
+  }
+
+  /* Generates pseudo-class variants */
+  @variants hover, focus {
+    .filter-none {
+      filter: none;
+    }
+    .filter-grayscale {
+      filter: grayscale(100%);
+    }
+  }
+}
+
+/* END Tailwindscss
+   ========================================================================== */
