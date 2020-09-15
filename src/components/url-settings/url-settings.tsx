@@ -1,6 +1,7 @@
 import { Component, Prop, State, h } from '@stencil/core';
-import { createAlert } from '../alert-dialog/alert-dialog';
-import { createModal } from "../page-modal/page-modal";
+import { presentAlert, presentAlertConfirm, presentAlertPrompt } from '../alert-factory/alert-factory';
+import { ModalFactory } from '../modal-factory/modal-factory';
+import { presentToast, presentToastWithOptions } from '../toast-factory/toast-factory';
 
 @Component({
   tag: 'url-settings',
@@ -9,6 +10,7 @@ import { createModal } from "../page-modal/page-modal";
 export class ViewSettings {
   @State() state = false;
   @State() checkbox = false;
+  @State() alertType: Function = presentAlert;
   @Prop() name: string;
 
   formattedName(): string {
@@ -18,14 +20,13 @@ export class ViewSettings {
     return '';
   }
 
-  presentToast() {
-    const toast = document.createElement('ion-toast');
-    toast.message = 'Your settings have been saved.';
-    toast.duration = 2000;
+  triggerAlert = () => {
+    this.alertType();
+  };
 
-    document.body.appendChild(toast);
-    return toast.present();
-  }
+  selectAlertType = event => {
+    this.alertType = event.target.value;
+  };
 
   render() {
     return [
@@ -39,9 +40,7 @@ export class ViewSettings {
       </ion-header>,
 
       <ion-content class="ion-padding">
-        <p>
-          Demos of common components.
-        </p>
+        <p>Demos of common components.</p>
 
         <ion-item>
           <ion-label>Email input</ion-label>
@@ -65,12 +64,15 @@ export class ViewSettings {
 
         <ion-item>
           <ion-label>Checkbox</ion-label>
-          <ion-checkbox checked={this.checkbox} onIonChange={ev => (this.checkbox = ev.detail.checked)} ></ion-checkbox>
+          <ion-checkbox checked={this.checkbox} onIonChange={ev => (this.checkbox = ev.detail.checked)}></ion-checkbox>
         </ion-item>
 
         <ion-item>
-          <ion-label>Select popover</ion-label>
-          <ion-select id="customPopoverSelect" interface="popover" interfaceOptions={{showBackdrop: false}} placeholder="Select One">
+          <ion-label>
+            Select popover
+            <ion-badge slot="end">New</ion-badge>
+          </ion-label>
+          <ion-select id="customPopoverSelect" interface="popover" interfaceOptions={{ showBackdrop: false }} placeholder="Select One">
             <ion-select-option value="brown">Brown</ion-select-option>
             <ion-select-option value="blonde">Blonde</ion-select-option>
             <ion-select-option value="black">Black</ion-select-option>
@@ -80,23 +82,23 @@ export class ViewSettings {
 
         <ion-item>
           <ion-label>Show toast</ion-label>
-          <ion-button onClick={this.presentToast}>
-            Toast
-          </ion-button>
+          <ion-button onClick={presentToast}>Toast</ion-button>
+          <ion-button onClick={presentToastWithOptions}>Toast options</ion-button>
         </ion-item>
 
         <ion-item>
           <ion-label>Show modal dialog</ion-label>
-          <ion-button onClick={createModal}>
-            Modal
-          </ion-button>
+          <ion-button onClick={() => ModalFactory.presentModal('modal-dialog')}>Modal</ion-button>
         </ion-item>
 
         <ion-item>
           <ion-label>Show alert</ion-label>
-          <ion-button onClick={createAlert}>
-            Alert
-          </ion-button>
+          <ion-select id="alertTypeSelect" interface="popover" interfaceOptions={{ showBackdrop: false }} placeholder="Alert type" onIonChange={this.selectAlertType}>
+            <ion-select-option value={presentAlert}>Static</ion-select-option>
+            <ion-select-option value={presentAlertConfirm}>Confirmation</ion-select-option>
+            <ion-select-option value={presentAlertPrompt}>Prompt</ion-select-option>
+          </ion-select>
+          <ion-button onClick={this.triggerAlert}>Alert</ion-button>
         </ion-item>
       </ion-content>,
     ];

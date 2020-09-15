@@ -1,4 +1,4 @@
-import { Component, Prop, State, h } from '@stencil/core';
+import { Component, Prop, h } from '@stencil/core';
 import { sayHello } from '../../helpers/utils';
 import state from '../../global/store';
 
@@ -7,7 +7,6 @@ import state from '../../global/store';
   styleUrl: 'url-profile.css',
 })
 export class ViewProfile {
-  @State() state = false;
   @Prop() name: string;
 
   formattedName(): string {
@@ -37,10 +36,11 @@ export class ViewProfile {
         </p>
 
         <div>
-          <ion-button onClick={e => state.clicks--}>-1</ion-button>
+          <ion-button onClick={() => state.clicks--}>-1</ion-button>
             <ion-label>Value: {state.clicks}</ion-label>
-          <ion-button onClick={e => state.clicks++}>+1</ion-button>
+          <ion-button onClick={() => state.clicks++}>+1</ion-button>
         </div>
+
       </ion-content>,
     ];
   }
