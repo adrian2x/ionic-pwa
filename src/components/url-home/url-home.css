@@ -1,0 +1,24 @@
+.ios .mobile-searchbar {
+  --height: 29px;
+  --size: 17px;
+  --border-radius: 7px;
+  padding-bottom: 0;
+  height: var(--height);
+
+  & .searchbar-input-container {
+    padding-bottom: 0;
+    height: var(--height);
+
+    & .searchbar-input {
+      font-size: var(--size);
+    }
+
+    & .searchbar-search-icon {
+      width: var(--size);
+    }
+
+    & .searchbar-input {
+      padding-left: 24px;
+    }
+  }
+}
