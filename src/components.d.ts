@@ -6,7 +6,13 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface AppRoot {
+    interface AppRouter {
+    }
+    interface ModalDialog {
+    }
+    interface ModalFactory {
+        "component": string;
+        "cssClass": string;
     }
     interface UrlHome {
     }
@@ -21,11 +27,23 @@ export namespace Components {
     }
 }
 declare global {
-    interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {
+    interface HTMLAppRouterElement extends Components.AppRouter, HTMLStencilElement {
     }
-    var HTMLAppRootElement: {
-        prototype: HTMLAppRootElement;
-        new (): HTMLAppRootElement;
+    var HTMLAppRouterElement: {
+        prototype: HTMLAppRouterElement;
+        new (): HTMLAppRouterElement;
+    };
+    interface HTMLModalDialogElement extends Components.ModalDialog, HTMLStencilElement {
+    }
+    var HTMLModalDialogElement: {
+        prototype: HTMLModalDialogElement;
+        new (): HTMLModalDialogElement;
+    };
+    interface HTMLModalFactoryElement extends Components.ModalFactory, HTMLStencilElement {
+    }
+    var HTMLModalFactoryElement: {
+        prototype: HTMLModalFactoryElement;
+        new (): HTMLModalFactoryElement;
     };
     interface HTMLUrlHomeElement extends Components.UrlHome, HTMLStencilElement {
     }
@@ -52,7 +70,9 @@ declare global {
         new (): HTMLUrlSettingsElement;
     };
     interface HTMLElementTagNameMap {
-        "app-root": HTMLAppRootElement;
+        "app-router": HTMLAppRouterElement;
+        "modal-dialog": HTMLModalDialogElement;
+        "modal-factory": HTMLModalFactoryElement;
         "url-home": HTMLUrlHomeElement;
         "url-loading": HTMLUrlLoadingElement;
         "url-profile": HTMLUrlProfileElement;
@@ -60,7 +80,13 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    interface AppRoot {
+    interface AppRouter {
+    }
+    interface ModalDialog {
+    }
+    interface ModalFactory {
+        "component"?: string;
+        "cssClass"?: string;
     }
     interface UrlHome {
     }
@@ -74,7 +100,9 @@ declare namespace LocalJSX {
         "name"?: string;
     }
     interface IntrinsicElements {
-        "app-root": AppRoot;
+        "app-router": AppRouter;
+        "modal-dialog": ModalDialog;
+        "modal-factory": ModalFactory;
         "url-home": UrlHome;
         "url-loading": UrlLoading;
         "url-profile": UrlProfile;
@@ -85,7 +113,9 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "app-router": LocalJSX.AppRouter & JSXBase.HTMLAttributes<HTMLAppRouterElement>;
+            "modal-dialog": LocalJSX.ModalDialog & JSXBase.HTMLAttributes<HTMLModalDialogElement>;
+            "modal-factory": LocalJSX.ModalFactory & JSXBase.HTMLAttributes<HTMLModalFactoryElement>;
             "url-home": LocalJSX.UrlHome & JSXBase.HTMLAttributes<HTMLUrlHomeElement>;
             "url-loading": LocalJSX.UrlLoading & JSXBase.HTMLAttributes<HTMLUrlLoadingElement>;
             "url-profile": LocalJSX.UrlProfile & JSXBase.HTMLAttributes<HTMLUrlProfileElement>;
