@@ -43,6 +43,7 @@
 
 /* Base layer to merge with tailwindcss base */
 @layer base {
+
   h1 {
     /* the apply directive is like extending multiple classes */
     @apply text-2xl;
@@ -50,6 +51,46 @@
 
   h2 {
     @apply text-xl;
+  }
+
+  select {
+    appearance: none;
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 11px;
+    padding-left: 1rem;
+    padding-right: 1.33rem; /* account for icon right */
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    background-color: var(--background);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3e%3cpath d='M64 144l192 224 192-224H64z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: .8rem;
+    background-position: calc(100% - 5px) center;
+    background-clip: border-box;
+    border-radius: 5px;
+
+    & option {
+      color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 1);
+    }
+
+    &:active, &:focus {
+      /* background-color: var(--ion-background-color, #fff); */
+    }
+
+    @nest body.dark & {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 512 512'%3e%3cpath d='M64 144l192 224 192-224H64z'/%3e%3c/svg%3e");
+    }
+  }
+
+  .sc-ion-searchbar-md-h {
+    --box-shadow: none;
+    --background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.07);
   }
 }
 

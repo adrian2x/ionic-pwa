@@ -69,10 +69,22 @@ export class ViewSettings {
 
         <ion-item>
           <ion-label>
+            Native select
+          </ion-label>
+          <select>
+            <option value="">One</option>
+            <option value="">Two</option>
+            <option value="">Three</option>
+            <option value="">Four</option>
+          </select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>
             Select popover
             <ion-badge slot="end">New</ion-badge>
           </ion-label>
-          <ion-select id="customPopoverSelect" interface="popover" interfaceOptions={{ showBackdrop: false }} placeholder="Select One">
+          <ion-select interface="popover" placeholder="Select One">
             <ion-select-option value="brown">Brown</ion-select-option>
             <ion-select-option value="blonde">Blonde</ion-select-option>
             <ion-select-option value="black">Black</ion-select-option>
