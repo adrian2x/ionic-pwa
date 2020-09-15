@@ -44,6 +44,8 @@
 /* Base layer to merge with tailwindcss base */
 @layer base {
 
+  @import "./dark.css";
+
   h1 {
     /* the apply directive is like extending multiple classes */
     @apply text-2xl;
