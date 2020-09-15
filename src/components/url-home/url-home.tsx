@@ -11,45 +11,45 @@ export class ViewHome {
   searchInput: HTMLIonSearchbarElement;
 
   @Listen('ionCancel')
-  onSearchCancel(event) {
+  onSearchCancel() {
     this.expandSearch = false;
   }
 
   @Watch('expandSearch')
-  watchHandler(newValue: boolean, oldValue: boolean) {
+  watchHandler(newValue: boolean) {
     console.log('watch:expandSearch', newValue);
     if (newValue) {
       setTimeout(() => {
         // Expanded search, should autoFocus
         this.searchInput.setFocus();
-      }, 16);
+      }, 100);
     }
   }
 
   render() {
-    const { expandSearch } = this;
+    const collapseSearch = !this.expandSearch;
     return (
       <ion-content>
         <ion-header>
-          <ion-toolbar>
-            {!expandSearch && [
-              <ion-buttons slot="start">
-                <ion-menu-toggle>
-                  <ion-menu-button autoHide={false}></ion-menu-button>
-                </ion-menu-toggle>
-              </ion-buttons>,
-              <ion-title>Header</ion-title>,
-            ]}
+          <ion-toolbar class={cx('toolbar-reveal', {'toolbar-hide': collapseSearch})}>
             <ion-searchbar
               ref={input => {
                 this.searchInput = input;
               }}
-              class={cx('mobile-searchbar', !expandSearch && 'ion-hide')}
               inputMode="search"
-              showCancelButton="always"
+              class="mobile-searchbar"
               cancelButtonText="Cancel"
+              showCancelButton="always"
             ></ion-searchbar>
-            <ion-buttons slot="primary" class={cx(expandSearch && 'ion-hide')}>
+          </ion-toolbar>
+          <ion-toolbar class={cx('toolbar-reveal', 'toolbar-up', {'toolbar-hide': this.expandSearch})}>
+            <ion-buttons slot="start">
+              <ion-menu-toggle>
+                <ion-menu-button autoHide={false}></ion-menu-button>
+              </ion-menu-toggle>
+            </ion-buttons>
+            <ion-title>Header</ion-title>
+            <ion-buttons slot="primary">
               <div class="ion-hide-md-down">
                 <ion-searchbar inputMode="search" animated={true} style={{ maxWidth: '375px' }}></ion-searchbar>
               </div>

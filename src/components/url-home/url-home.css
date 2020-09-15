@@ -1,24 +1,58 @@
 .ios .mobile-searchbar {
-  --height: 29px;
-  --size: 17px;
-  --border-radius: 7px;
-  padding-bottom: 0;
+  --height: 36px;
   height: var(--height);
+  padding-bottom: 0;
 
   & .searchbar-input-container {
     padding-bottom: 0;
     height: var(--height);
 
     & .searchbar-input {
-      font-size: var(--size);
+      font-size: 16px;
     }
 
     & .searchbar-search-icon {
-      width: var(--size);
+      width: 18px;
+      left: 7px;
+    }
+  }
+}
+
+ion-header {
+  & > ion-toolbar.ios {
+    --height: 50px;
+    --min-height: 50px;
+
+    & ion-buttons.ios {
+      height: 49px;
+    }
+  }
+
+  & > .toolbar-reveal {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity 0.2s ease-out, transform 0.15s ease;
+
+    &.toolbar-hide {
+      height: 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(50%);
+      z-index: -1;
+
+      &.toolbar-up {
+        transform: translateY(-50%);
+      }
+
+      & * {
+        height: 0 !important;
+      }
     }
 
-    & .searchbar-input {
-      padding-left: 24px;
+    @nest .ios &:not(:last-of-type,.toolbar-hide) {
+      border: 0.55px solid var(--border-color) !important;
+      border-width: 0 0 0.55px !important;
     }
   }
 }
