@@ -19,7 +19,7 @@ export const config: Config = {
       plugins: [
         tailwindcss(),
         autoprefixer(),
-        postcssPresetEnv(),
+        postcssPresetEnv({ stage: 1 }),
       ]
     })
   ]
