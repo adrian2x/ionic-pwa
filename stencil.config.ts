@@ -7,9 +7,10 @@ import tailwindcss from 'tailwindcss';
 // https://stenciljs.com/docs/config
 
 export const config: Config = {
+  buildEs5: false,
   globalScript: 'src/global/app.ts',
   globalStyle: 'src/global/app.css',
-  taskQueue: 'async',
+  taskQueue: 'immediate',
   outputTargets: [{
     type: 'www',
     serviceWorker: null
