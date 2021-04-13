@@ -5,7 +5,18 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { ColumnDef } from "./components/ag-grid/ag-grid";
 export namespace Components {
+    interface AgGrid {
+        "columnDefs": ColumnDef[];
+        "darkMode"?: boolean;
+        "height": string;
+        "preferRefresh"?: boolean;
+        "rowData": any[];
+    }
+    interface AgGridDemoPage {
+        "name": string;
+    }
     interface AppRouter {
     }
     interface ModalDialog {
@@ -27,6 +38,18 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAgGridElement extends Components.AgGrid, HTMLStencilElement {
+    }
+    var HTMLAgGridElement: {
+        prototype: HTMLAgGridElement;
+        new (): HTMLAgGridElement;
+    };
+    interface HTMLAgGridDemoPageElement extends Components.AgGridDemoPage, HTMLStencilElement {
+    }
+    var HTMLAgGridDemoPageElement: {
+        prototype: HTMLAgGridDemoPageElement;
+        new (): HTMLAgGridDemoPageElement;
+    };
     interface HTMLAppRouterElement extends Components.AppRouter, HTMLStencilElement {
     }
     var HTMLAppRouterElement: {
@@ -70,6 +93,8 @@ declare global {
         new (): HTMLUrlSettingsElement;
     };
     interface HTMLElementTagNameMap {
+        "ag-grid": HTMLAgGridElement;
+        "ag-grid-demo-page": HTMLAgGridDemoPageElement;
         "app-router": HTMLAppRouterElement;
         "modal-dialog": HTMLModalDialogElement;
         "modal-factory": HTMLModalFactoryElement;
@@ -80,6 +105,16 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface AgGrid {
+        "columnDefs"?: ColumnDef[];
+        "darkMode"?: boolean;
+        "height"?: string;
+        "preferRefresh"?: boolean;
+        "rowData"?: any[];
+    }
+    interface AgGridDemoPage {
+        "name"?: string;
+    }
     interface AppRouter {
     }
     interface ModalDialog {
@@ -100,6 +135,8 @@ declare namespace LocalJSX {
         "name"?: string;
     }
     interface IntrinsicElements {
+        "ag-grid": AgGrid;
+        "ag-grid-demo-page": AgGridDemoPage;
         "app-router": AppRouter;
         "modal-dialog": ModalDialog;
         "modal-factory": ModalFactory;
@@ -113,6 +150,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ag-grid": LocalJSX.AgGrid & JSXBase.HTMLAttributes<HTMLAgGridElement>;
+            "ag-grid-demo-page": LocalJSX.AgGridDemoPage & JSXBase.HTMLAttributes<HTMLAgGridDemoPageElement>;
             "app-router": LocalJSX.AppRouter & JSXBase.HTMLAttributes<HTMLAppRouterElement>;
             "modal-dialog": LocalJSX.ModalDialog & JSXBase.HTMLAttributes<HTMLModalDialogElement>;
             "modal-factory": LocalJSX.ModalFactory & JSXBase.HTMLAttributes<HTMLModalFactoryElement>;

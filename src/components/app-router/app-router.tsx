@@ -11,6 +11,7 @@ export class AppRoot {
         <ion-nav id="main" />
         <ion-router useHash={false}>
           <ion-route url="/" component="url-home" />
+          <ion-route url="/grid-demo" component="ag-grid-demo-page" />
           <ion-route url="/settings" component="url-settings" />
           <ion-route url="/loading" component="url-loading" />
           <ion-route url="/profile/:name" component="url-profile" />
@@ -41,6 +42,10 @@ export class AppRoot {
                 <ion-item button href="/settings">
                   <ion-icon slot="start" name="settings-sharp"></ion-icon>
                   <ion-label>Settings</ion-label>
+                </ion-item>
+                <ion-item button href="/grid-demo">
+                  <ion-icon slot="start" name="settings-sharp"></ion-icon>
+                  <ion-label>Grid</ion-label>
                 </ion-item>
               </ion-menu-toggle>
             </ion-list>
