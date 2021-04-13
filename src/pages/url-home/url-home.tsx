@@ -31,7 +31,7 @@ export class ViewHome {
     return (
       <ion-content>
         <ion-header>
-          <ion-toolbar class={cx('toolbar-reveal', {'toolbar-hide': collapseSearch})}>
+          <ion-toolbar class={cx('toolbar-reveal', { 'toolbar-hide': collapseSearch })}>
             <ion-searchbar
               ref={input => {
                 this.searchInput = input;
@@ -42,7 +42,7 @@ export class ViewHome {
               showCancelButton="always"
             ></ion-searchbar>
           </ion-toolbar>
-          <ion-toolbar class={cx('toolbar-reveal', 'toolbar-up', {'toolbar-hide': this.expandSearch})}>
+          <ion-toolbar class={cx('toolbar-reveal', 'toolbar-up', { 'toolbar-hide': this.expandSearch })}>
             <ion-buttons slot="start">
               <ion-menu-toggle>
                 <ion-menu-button autoHide={false}></ion-menu-button>

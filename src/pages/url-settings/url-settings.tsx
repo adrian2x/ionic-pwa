@@ -1,7 +1,7 @@
 import { Component, Prop, State, h } from '@stencil/core';
-import { presentAlert, presentAlertConfirm, presentAlertPrompt } from '../alert-factory/alert-factory';
-import { ModalFactory } from '../modal-factory/modal-factory';
-import { presentToast, presentToastWithOptions } from '../toast-factory/toast-factory';
+import { presentAlert, presentAlertConfirm, presentAlertPrompt } from '../../components/alert-factory/alert-factory';
+import { ModalFactory } from '../../components/modal-factory/modal-factory';
+import { presentToast, presentToastWithOptions } from '../../components/toast-factory/toast-factory';
 
 @Component({
   tag: 'url-settings',
@@ -68,9 +68,7 @@ export class ViewSettings {
         </ion-item>
 
         <ion-item>
-          <ion-label>
-            Native select
-          </ion-label>
+          <ion-label>Native select</ion-label>
           <select>
             <option value="">One</option>
             <option value="">Two</option>
